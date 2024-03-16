@@ -12,6 +12,10 @@ Options:
 - -r, --root DIRECTORY  [default: .]
 - --help                Show this message and exit.
 
+The file _.cleanable_ will contain all the folders to clean.
+
+The file _.cleanignore_ will contain all the folders to ignore, and will ignore all the children folders.
+
 ## Installation
 First you have to create a virtual env to install the required dependencies of the project:
 
@@ -34,4 +38,3 @@ If you want to build an executable, you can run the following command:
 `pyinstaller --onefile build_cleaner.py`
 
 The generated _dist/_ folder will contain your executable file
-
