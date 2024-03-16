@@ -46,6 +46,17 @@ def clean_folder(
             
 
 @click.command()
+@click.option(
+    "-r",
+    "--root",
+    type=click.Path(
+        exists=True,
+        dir_okay=True,
+        file_okay=False,
+        path_type=None
+    ),
+    show_default=True,
+    default=".")
 @click.argument(
     "paths",
     nargs=-1,
@@ -57,10 +68,10 @@ def clean_folder(
         path_type=Path,
     ),
 )
-def cli(paths: str) -> None:
-    ignore_list = read_file_to_list(__clean_ignore_filename__)
+def cli(paths: str, root: str) -> None:
+    ignore_list = read_file_to_list(os.path.join(root, __clean_ignore_filename__))
     print(f"Ignore following folder names: {ignore_list}")
-    to_clean_list = read_file_to_list(__cleanable_filename__)
+    to_clean_list = read_file_to_list(os.path.join(root, __cleanable_filename__))
     print(f"Clean following folder names: {to_clean_list}")
     print("---")
     for i, path in enumerate(paths):
